@@ -5,7 +5,8 @@ tikTakBoom = {
         gameStatusField,
         textFieldQuestion,
         textFieldAnswer1,
-        textFieldAnswer2
+        textFieldAnswer2,
+        startStopBtn
     ) {
         this.boomTimer = 30;
         this.countOfPlayers = 2;
@@ -16,6 +17,7 @@ tikTakBoom = {
         this.textFieldQuestion = textFieldQuestion;
         this.textFieldAnswer1 = textFieldAnswer1;
         this.textFieldAnswer2 = textFieldAnswer2;
+        this.startStopBtn = startStopBtn;
 
         this.needRightAnswers = 3;
     },
@@ -27,7 +29,7 @@ tikTakBoom = {
 
         this.rightAnswers = 0;
 
-        this.turnOn();
+        setTimeout(() => {this.turnOn()}, 3000);
 
         this.timer();
     },
