@@ -23,6 +23,8 @@ tikTakBoom = {
     run() {
         this.state = 1;
 
+        this.start = 3;
+
         this.rightAnswers = 0;
 
         this.turnOn();
@@ -90,23 +92,34 @@ tikTakBoom = {
     },
 
     timer() {
-        if (this.state) {
-            this.boomTimer -= 1;
-            let sec = this.boomTimer % 60;
-            let min = (this.boomTimer - sec) / 60;
-            sec = (sec >= 10) ? sec : '0' + sec;
-            min = (min >= 10) ? min : '0' + min;
-            this.timerField.innerText = `${min}:${sec}`;
+        if (this.start > 0) {
+            this.timerField.innerText = `${this.start}...`;
+            --this.start;
+            setTimeout(
+                () => {
+                    this.timer()
+                },
+                1000,
+            );
+        } else {
+            if (this.state) {
+                this.boomTimer -= 1;
+                let sec = this.boomTimer % 60;
+                let min = (this.boomTimer - sec) / 60;
+                sec = (sec >= 10) ? sec : '0' + sec;
+                min = (min >= 10) ? min : '0' + min;
+                this.timerField.innerText = `${min}:${sec}`;
 
-            if (this.boomTimer > 0) {
-                setTimeout(
-                    () => {
-                        this.timer()
-                    },
-                    1000,
-                )
-            } else {
-                this.finish('lose');
+                if (this.boomTimer > 0) {
+                    setTimeout(
+                        () => {
+                            this.timer()
+                        },
+                        1000,
+                    )
+                } else {
+                    this.finish('lose');
+                }
             }
         }
     },
