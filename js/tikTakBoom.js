@@ -6,10 +6,10 @@ tikTakBoom = {
         textFieldQuestion,
         textFieldAnswer1,
         textFieldAnswer2,
-        startStopBtn
+        startStopBtn,
+        players,
     ) {
         this.boomTimer = 30;
-        this.countOfPlayers = 2;
         this.tasks = JSON.parse(tasks);
 
         this.timerField = timerField;
@@ -24,6 +24,8 @@ tikTakBoom = {
 
     run() {
         this.state = 1;
+
+        this.countOfPlayers = players.value;
 
         this.start = 3;
 
@@ -81,9 +83,14 @@ tikTakBoom = {
         this.state = 0;
         if (result === 'lose') {
             this.gameStatusField.innerText = `Вы проиграли!`;
+            this.startStopBtn.className = "btn btn-block btn-outline-primary";
+            this.startStopBtn.textContent = "Начать игру";
+
         }
         if (result === 'won') {
             this.gameStatusField.innerText = `Вы выиграли!`;
+            this.startStopBtn.className = "btn btn-block btn-outline-primary";
+            this.startStopBtn.textContent = "Начать игру";
         }
 
         this.textFieldQuestion.innerText = ``;
