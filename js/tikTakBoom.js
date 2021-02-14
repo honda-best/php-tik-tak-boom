@@ -52,6 +52,7 @@ tikTakBoom = {
     turnOff(value) {
         if (this.currentTask[value].result) {
             this.gameStatusField.innerText = 'Верно!';
+            this.boomTimer += 5;
             if ((this.superQuestion == 8) || (this.superQuestion == 1)) {
                 //console.log('зашли в turnOff ', this.superQuestion);
                 this.finish('won');
@@ -67,6 +68,7 @@ tikTakBoom = {
                 }
         } else {
             this.gameStatusField.innerText = 'Неверно!';
+            this.boomTimer -= 5;
             this.players[this.i][1] += 1;
             this.superQuestion = 0;
             this.boomTimer -= 5;
