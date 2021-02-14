@@ -23,5 +23,43 @@ body {
 }
 
 #startstop {
-    margin-top: 50px;
+    margin-top: 10px;
+}
+
+.container {
+    background-color: rgb(240, 197, 181);
+}
+
+.questionField {
+    margin: 10px -10px;
+    font-size: 20px;
+}
+
+.timer {
+    margin: -30px 0 0 0;
+}
+
+.gametitle {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+
+.numplayers {
+    margin: 5px 0 10px 20px;
+}
+
+.timesel {
+    margin: 5px 0 10px 20px;
+}
+
+.rightanswer {
+    margin-left: 5px;
+}
+
+.startstop {
+    background-color: rgb(100, 237, 118);
+    color: cornsilk;
+    margin-bottom: 10px;
 }
