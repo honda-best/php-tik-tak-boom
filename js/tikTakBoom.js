@@ -58,6 +58,7 @@ tikTakBoom = {
             }
             this.rightAnswers += 1;
             this.players[this.i][0] += 1;
+            this.boomTimer += 5;
             switch (this.i) {
                 case 0: document.getElementById('player1').innerText = this.players[this.i][0]; break;
                 case 1: document.getElementById('player2').innerText = this.players[this.i][0]; break;
@@ -68,6 +69,7 @@ tikTakBoom = {
             this.gameStatusField.innerText = 'Неверно!';
             this.players[this.i][1] += 1;
             this.superQuestion = 0;
+            this.boomTimer -= 5;
             switch (this.i) {
                 case 0: document.getElementById('player1Error').innerText = this.players[this.i][1]; break;
                 case 1: document.getElementById('player2Error').innerText = this.players[this.i][1]; break;
