@@ -12,9 +12,26 @@ tikTakBoom = {
         this.boomTimer = 30;
         this.countOfPlayers = 2;
         this.players = [[0, 0], [0, 0], [0, 0], [0, 0]];
+        // обрабатываем ошибки в вопросах
         try {
+            // если JSON некорректен, будет SyntaxError
             this.tasks = JSON.parse(tasks);
-        } catch(SyntaxError) {
+            // проверяем, что вопросов не меньше 30 
+            if (this.tasks.length < 29) {
+                throw new Error('Few questions');
+            }
+            // проверяем правильность вопросов
+            for (let i = 0; i < this.tasks.length; ++i) {
+                // правильный ответ только один
+                if (this.tasks[i].answer1.result == this.tasks[i].answer2.result) {
+                    throw new Error(`Several correct answers in ${i + 1} question`);
+                }
+                // проверям, не пустой ли вопрос и ответ
+                if (this.tasks[i].question == '' || this.tasks[i].answer1.value || this.tasks[i].answer2.value) {
+                    throw new Error(`Empty ${i + 1} question or answer`);
+                }
+            } 
+        } catch {
             alert('Игру невозможно начать!')
         }
 
