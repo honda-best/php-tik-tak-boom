@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ТикТакБум</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
+</head>
+<body>
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col col-md-8 offset-md-2">
+            <div class="row gametitle">
+                <div class="title">
+                    <h1>Тик-так-бум</h1>
+                </div>
+            </div>
+            <div class="row">
+                <span class="alert alert-primary" id="gameStatusField">Играем?</span>
+            </div>
+            <div class="row ">
+                <div class="col timer">
+                    <div class="timer-output-wrapper">
+                        <div class="timer-output" id="timerField">
+                            00:00
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row questionField">
+                <p id="questionField">Для начала игры нажмите кнопку внизу</p>
+            </div>
+            <div class="row">
+                <div id="answer1" class="btn btn-primary form-control text-left answer"></div>
+            </div>
+            <div class="row">
+                <div id="answer2" class="btn btn-danger form-control text-left answer"></div>
+            </div>
+            <div class="row numplayers"> <h5>Выберите число игроков:</h5>
+                <select class="numplayers" name="Число игроков" id="players">
+                    <option value="s1">1</option>
+                    <option value="s2">2</option>
+                    <option value="s3">3</option>
+                    <option value="s4">4</option>
+                </select>
+            </div>
+            <div class="row timesel">
+                <h5>Установите время игры</h5>
+                <form><input class="timesel" type="number" min="60" value="120" id="timer"> сек</form>
+
+            </div>
+            <div class="row rightanswer">
+                <h5>Число правильных ответов у игроков:</h5>
+
+                <span class="alert alert-success" id="player1">_</span>
+                <span class="alert alert-success" id="player2">_</span>
+                <span class="alert alert-success" id="player3">_</span>
+                <span class="alert alert-success" id="player4">_</span>
+
+            </div>
+            <div class="row">
+                <h5>Число неправильных ответов у игроков:</h5>
+
+                <span class="alert alert-danger" id="player1Error">_</span>
+                <span class="alert alert-danger" id="player2Error">_</span>
+                <span class="alert alert-danger" id="player3Error">_</span>
+                <span class="alert alert-danger" id="player4Error">_</span>
+
+            </div>
+            <div class="row start_about">
+                <button class="btn startstop" id="startstop">Начать игру</button>
+                    <a href="about.html" class="btn btn-primary about_link">Об игре</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/tikTakBoom.js"></script>
+<script src="js/tikTakBoomTasks.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
