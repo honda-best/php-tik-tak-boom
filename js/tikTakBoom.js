@@ -12,7 +12,11 @@ tikTakBoom = {
         this.boomTimer = 30;
         this.countOfPlayers = 2;
         this.players = [[0, 0], [0, 0], [0, 0], [0, 0]];
-        this.tasks = JSON.parse(tasks);
+        try {
+            this.tasks = JSON.parse(tasks);
+        } catch(SyntaxError) {
+            alert('Игру невозможно начать!')
+        }
 
         this.timerField = timerField;
         this.gameStatusField = gameStatusField;
