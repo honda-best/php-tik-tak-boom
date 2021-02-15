@@ -12,6 +12,7 @@ tikTakBoom = {
         this.boomTimer = 30;
         this.countOfPlayers = 2;
         this.players = [[0, 0], [0, 0], [0, 0], [0, 0]];
+        this.isPlaying = [0, 0, 0, 0];
         // обрабатываем ошибки в вопросах
         try {
             // если JSON некорректен, будет SyntaxError
@@ -27,7 +28,7 @@ tikTakBoom = {
                     throw new Error(`Several correct answers in ${i + 1} question`);
                 }
                 // проверям, не пустой ли вопрос и ответ
-                if (this.tasks[i].question == '' || this.tasks[i].answer1.value || this.tasks[i].answer2.value) {
+                if (this.tasks[i].question == '' || this.tasks[i].answer1.value == '' || this.tasks[i].answer2.value == '') {
                     throw new Error(`Empty ${i + 1} question or answer`);
                 }
             } 
@@ -58,6 +59,10 @@ tikTakBoom = {
         this.timer();
 
         this.countOfPlayers = document.getElementById("players").options.selectedIndex;
+
+        for (let i = 0; i < this.countOfPlayers; ++i) {
+            this.isPlaying[i] = 1;
+        }
     },
 
     turnOn() {
@@ -81,7 +86,6 @@ tikTakBoom = {
             }
             this.rightAnswers += 1;
             this.players[this.i][0] += 1;
-            this.boomTimer += 5;
             switch (this.i) {
                 case 0: document.getElementById('player1').innerText = this.players[this.i][0]; break;
                 case 1: document.getElementById('player2').innerText = this.players[this.i][0]; break;
@@ -92,8 +96,12 @@ tikTakBoom = {
             this.gameStatusField.innerText = 'Неверно!';
             this.boomTimer -= 5;
             this.players[this.i][1] += 1;
+            // при трёх ошибках, завершаем игру
+            if (this.players[this.i][1] == 3) {
+                this.isPlaying[this.i] = 0;
+                this.players[this.i][1] = '❌';
+            }
             this.superQuestion = 0;
-            this.boomTimer -= 5;
             switch (this.i) {
                 case 0: document.getElementById('player1Error').innerText = this.players[this.i][1]; break;
                 case 1: document.getElementById('player2Error').innerText = this.players[this.i][1]; break;
@@ -103,8 +111,17 @@ tikTakBoom = {
         }
         if ((this.rightAnswers < this.needRightAnswers) || (this.boomTimer > 0)) {
             
-            this.i = this.i + 1;
-            if (this.i == (this.countOfPlayers + 1)) {
+            ++this.i;
+            // isPlaying[i] == 0, если у игрока 3 ошибки
+            while (isPlaying[this.i] == 0) {
+                ++this.i;
+            }
+            // если у всех больше 3 ошибок, игра заканчивается
+            if (isPlaying.includes(1) == false) {
+                this.finish('lose');
+            }
+
+            if (this.i >= (this.countOfPlayers + 1)) {
                 this.i = 0;
             }
             if (this.tasks.length === 0) {
