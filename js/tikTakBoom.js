@@ -60,7 +60,7 @@ tikTakBoom = {
 
         this.countOfPlayers = document.getElementById("players").options.selectedIndex;
 
-        for (let i = 0; i < this.countOfPlayers; ++i) {
+        for (let i = 0; i <= this.countOfPlayers; ++i) {
             this.isPlaying[i] = 1;
         }
     },
@@ -112,13 +112,14 @@ tikTakBoom = {
         if ((this.rightAnswers < this.needRightAnswers) || (this.boomTimer > 0)) {
             
             ++this.i;
-            // isPlaying[i] == 0, если у игрока 3 ошибки
-            while (isPlaying[this.i] == 0) {
-                ++this.i;
-            }
+
             // если у всех больше 3 ошибок, игра заканчивается
-            if (isPlaying.includes(1) == false) {
+            if (this.isPlaying.includes(1) == false) {
                 this.finish('lose');
+            }
+            // isPlaying[i] == 0, если у игрока 3 ошибки
+            while (this.isPlaying[this.i] == 0) {
+                ++this.i;
             }
 
             if (this.i >= (this.countOfPlayers + 1)) {
