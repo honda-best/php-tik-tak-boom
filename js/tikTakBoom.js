@@ -31,8 +31,9 @@ tikTakBoom = {
                     throw new Error(`Empty ${i + 1} question or answer`);
                 }
             } 
-        } catch {
-            alert('Игру невозможно начать!')
+        } catch(anyException) {
+            console.error(anyException);
+            alert('Игру невозможно начать!');
         }
 
         this.timerField = timerField;
