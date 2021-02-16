@@ -195,7 +195,9 @@ tikTakBoom = {
         // }
 
 
-        this.gameStatusField.innerText += `Победил игрок №${id+1}`;
+        if (this.countOfPlayers > '1') {
+            this.gameStatusField.innerText += `Победил игрок №${id + 1}`;
+        }
 
         this.textFieldQuestion.innerText = `Для начала игры нажмите кнопку внизу`;
         this.textFieldAnswer1.innerText = ``;
