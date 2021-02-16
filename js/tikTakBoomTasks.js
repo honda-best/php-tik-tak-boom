@@ -48,8 +48,8 @@ const tasks = `
         },
         {
             "question": "Чем питаются собаки?",
-            "answer1": { "result": true, "value": "Планктоном" },
-            "answer2": { "result": false, "value": "Мясом" }
+            "answer1": { "result": false, "value": "Планктоном" },
+            "answer2": { "result": true, "value": "Мясом" }
         },
         {
             "question": "Сколько ног у слона?",
