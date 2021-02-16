@@ -11,8 +11,10 @@ function startStop() {
 	} else {
 		tikTakBoom.finish('lose');
 		startStopBtn.className = "btn startstop";
-    	startStopBtn.textContent = "Начать игру";
-    	gameRun = 1;
+    		startStopBtn.textContent = "Заново?";
+		gameRun = 1;
+		document.getElementById('startstop').onclick = function () {
+		window.location.reload();
 	}
 }
 
