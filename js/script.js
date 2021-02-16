@@ -4,12 +4,13 @@ let gameRun = 1;
 function startStop() {
 	if (gameRun) {
 		tikTakBoom.run();
-    	startStopBtn.className = "btn btn-block btn-outline-danger";
+// TODO: очищать счетчики ответов
+    	startStopBtn.className = "btn btn-outline-danger";
     	startStopBtn.textContent = "Закончить игру";
     	gameRun = 0;
 	} else {
 		tikTakBoom.finish('lose');
-		startStopBtn.className = "btn btn-block btn-outline-primary";
+		startStopBtn.className = "btn startstop";
     	startStopBtn.textContent = "Начать игру";
     	gameRun = 1;
 	}
