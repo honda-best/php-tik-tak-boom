@@ -202,8 +202,6 @@ tikTakBoom = {
         this.textFieldQuestion.innerText = `Для начала игры нажмите кнопку внизу`;
         this.textFieldAnswer1.innerText = ``;
         this.textFieldAnswer2.innerText = ``;
-        clearInterval(this.intervalId);
-        clearTimeout(this.intervalId);
         console.log(this);
     },
 
