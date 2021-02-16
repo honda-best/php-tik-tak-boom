@@ -15,6 +15,7 @@ function startStop() {
 		gameRun = 1;
 		document.getElementById('startstop').onclick = function () {
 		window.location.reload();
+		}
 	}
 }
 
