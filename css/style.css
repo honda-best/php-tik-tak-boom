@@ -61,9 +61,14 @@ body {
 .startstop {
     background-color: rgb(100, 237, 118);
     color: cornsilk;
-    margin-bottom: 10px;
+    margin: 10px;
 }
 
 .about_link {
-    margin-bottom: 10px;    
+    margin: 10px 0;    
+}
+
+.start_about {
+    display: flex;
+    justify-content: space-evenly;
 }
