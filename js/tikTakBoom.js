@@ -142,13 +142,13 @@ tikTakBoom = {
     printQuestion(task) {
 
         if ((task.question8) || (this.countOfPlayers > '1')) {
-            task.question += 'вопрос 8 - победит дружба';
+            task.question += '  !!!ВНИМАНИЕ!!! ВОПРОС 8ка - ПОБЕДИТ ДРУЖБА!';
             this.superQuestion = 8;
             console.log(this.superQuestion);
         }
 
         if (task.questionMillion) {
-            task.question += 'вопрос на миллион!';
+            task.question += '  !!!ВНИМАНИЕ!!! ВОПРОС НА МИЛЛИОН!';
             this.superQuestion = 1;
             console.log(this.superQuestion);
         }
