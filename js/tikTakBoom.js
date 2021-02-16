@@ -171,6 +171,17 @@ tikTakBoom = {
             this.gameStatusField.innerText = `Вы выиграли!`;
         }
 
+        // ищем минимальное количество ошибок
+        let min = 3;
+        let id = 0;
+        for (let i = 0; i < this.countOfPlayers; ++i) {
+            if (players[i][1] < min) {
+                id = i;
+                min = players[i][1];
+            }
+        }
+        this.gameStatusField.innerText += `Победил игрок №${id+1}`
+
         this.textFieldQuestion.innerText = `Для начала игры нажмите кнопку внизу`;
         this.textFieldAnswer1.innerText = ``;
         this.textFieldAnswer2.innerText = ``;
