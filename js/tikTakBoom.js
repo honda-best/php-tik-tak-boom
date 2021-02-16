@@ -176,7 +176,7 @@ tikTakBoom = {
         let min = 4;
         let id = [];
         let repeat = 0;
-        for (let i = 0; i < this.countOfPlayers; ++i) {
+        for (let i = 0; i <= this.countOfPlayers; ++i) {
             if (this.players[i][1] <= min) {
                 if (this.players[i][1] == min) {
                     repeat = 1;
@@ -187,11 +187,12 @@ tikTakBoom = {
                 id.push(i);
             }
         }
-        if (repeat) {
-            this.countOfPlayers = id.length;
-            this.timer(5);
-            this.turnOn();
-        }
+        // TODO: Если у нескольких игроков наименьшее количество ошибок - играют в пенальти:
+        // if (repeat) {
+        //     this.countOfPlayers = id.length;
+        //     this.timer(5);
+        //     this.turnOn();
+        // }
 
 
         this.gameStatusField.innerText += `Победил игрок №${id+1}`;
@@ -219,7 +220,6 @@ tikTakBoom = {
             );
         } else {
             if (this.state) {
-                console.log(time, this.boomTimer);
                 this.boomTimer -= 1;
                 let sec = this.boomTimer % 60;
                 let min = (this.boomTimer - sec) / 60;
