@@ -44,7 +44,8 @@ const tasks = `
         {
             "question": "Где живут осьминоги?",
             "answer1": { "result": false, "value": "В реках" },
-            "answer2": { "result": true, "value": "В океанах" }
+            "answer2": { "result": true, "value": "В океанах" },
+            "question8": 1
         },
         {
             "question": "Чем питаются собаки?",
@@ -74,7 +75,8 @@ const tasks = `
         {
             "question": "Какого цвета зебра?",
             "answer1": { "result": false, "value": "Белая в черную полоску" },
-            "answer2": { "result": true, "value": "Черная в белую полоску" }
+            "answer2": { "result": true, "value": "Черная в белую полоску" },
+            "questionMillion": 1
         },
         {
             "question": "Сколько рядов зубов у акул?",
