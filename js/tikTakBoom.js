@@ -141,7 +141,7 @@ tikTakBoom = {
 
     printQuestion(task) {
 
-        if (task.question8) {
+        if ((task.question8) || (this.countOfPlayers > '1')) {
             task.question += 'вопрос 8 - победит дружба';
             this.superQuestion = 8;
             console.log(this.superQuestion);
@@ -149,8 +149,8 @@ tikTakBoom = {
 
         if (task.questionMillion) {
             task.question += 'вопрос на миллион!';
-            console.log(this.superQuestion);
             this.superQuestion = 1;
+            console.log(this.superQuestion);
         }
 
         this.textFieldQuestion.innerText = task.question;
