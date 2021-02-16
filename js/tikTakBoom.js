@@ -56,7 +56,7 @@ tikTakBoom = {
 
         setTimeout(() => {this.turnOn()}, 3000);
 
-        this.timer();
+        this.timer(document.querySelector('#timer').value);
 
         this.countOfPlayers = document.getElementById("players").options.selectedIndex;
 
@@ -69,6 +69,7 @@ tikTakBoom = {
         this.gameStatusField.innerText += ` Вопрос игроку №${this.i + 1}`;
 
         const taskNumber = randomIntNumber(this.tasks.length - 1);
+
         this.printQuestion(this.tasks[taskNumber]);
 
         this.tasks.splice(taskNumber, 1);
@@ -172,15 +173,27 @@ tikTakBoom = {
         }
 
         // ищем минимальное количество ошибок
-        let min = 3;
-        let id = 0;
+        let min = 4;
+        let id = [];
+        let repeat = 0;
         for (let i = 0; i < this.countOfPlayers; ++i) {
-            if (this.players[i][1] < min) {
-                id = i;
-                min = this.players[i][1];
-                console.log(id, min);
+            if (this.players[i][1] <= min) {
+                if (this.players[i][1] == min) {
+                    repeat = 1;
+                } else {
+                    repeat = 0;
+                    min = this.players[i][1];
+                }
+                id.push(i);
             }
         }
+        if (repeat) {
+            this.countOfPlayers = id.length;
+            this.timer(5);
+            this.turnOn();
+        }
+
+
         this.gameStatusField.innerText += `Победил игрок №${id+1}`;
 
         this.textFieldQuestion.innerText = `Для начала игры нажмите кнопку внизу`;
@@ -191,7 +204,10 @@ tikTakBoom = {
         console.log(this);
     },
 
-    timer() {
+    timer(time = 0) {
+        if (time != 0) {
+            this.boomTimer = time;
+        }
         if (this.start > 0) {
             this.timerField.innerText = `${this.start}...`;
             --this.start;
@@ -203,6 +219,7 @@ tikTakBoom = {
             );
         } else {
             if (this.state) {
+                console.log(time, this.boomTimer);
                 this.boomTimer -= 1;
                 let sec = this.boomTimer % 60;
                 let min = (this.boomTimer - sec) / 60;
@@ -213,7 +230,7 @@ tikTakBoom = {
                 if (this.boomTimer > 0) {
                     this.intervalId = setTimeout(
                         () => {
-                            this.timer()
+                            this.timer(this.boomTimer)
                         },
                         1000,
                     )
