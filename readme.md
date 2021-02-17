@@ -1,8 +1,8 @@
 ## Тик-так-бум
 
 #### Участники проекта:
-1. Руководитель: [@nmvil Наумов Илья](https://github.com/nmvil)
-2. Участник: [@honda-best Алексей Ткаченко](https://github.com/honda-best)
+1. Руководитель: [@nmvil](https://github.com/nmvil) Наумов Илья
+2. Участник: [@honda-best](https://github.com/honda-best) Алексей Ткаченко
 ---
 
 #### Обязательные задания:
