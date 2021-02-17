@@ -6,8 +6,7 @@ tikTakBoom = {
         textFieldQuestion,
         textFieldAnswer1,
         textFieldAnswer2,
-        startStopBtn,
-        boomTimer
+        startStopBtn
     ) {
         this.boomTimer = [30, 0, 0, 0];
         this.countOfPlayers = 2;
@@ -44,7 +43,7 @@ tikTakBoom = {
         this.textFieldAnswer2 = textFieldAnswer2;
         this.startStopBtn = startStopBtn;
         this.i = 0;
-        this.needRightAnswers = 3;
+        this.needRightAnswers = 19;
     },
 
     run() {
@@ -239,10 +238,8 @@ tikTakBoom = {
         console.log(this);
     },
 
-    timer(time = 0) {
-        // if (time != 0) {
-        //     this.boomTimer = time;
-        // }
+    timer() {
+        
         if (this.start > 0) {
             this.timerField.innerText = `${this.start}...`;
             --this.start;
