@@ -163,6 +163,37 @@ tikTakBoom = {
         this.currentTask = task;
     },
 
+    penalty(id) {
+        timer(5);
+        let game = 1;
+        let i = 0;
+        while (game && this.boomTimer > 0 && id.length > 1) {
+            this.gameStatusField.innerText = `Пенальти! Вопрос игроку №${this.i + 1}`;
+            const taskNumber = randomIntNumber(this.tasks.length - 1);
+
+            this.textFieldQuestion.innerText = this.tasks[taskNumber].question;
+            this.textFieldAnswer1.innerText = this.tasks[taskNumber].answer1.value;
+            this.textFieldAnswer2.innerText = this.tasks[taskNumber].answer2.value;
+
+            this.textFieldAnswer1.addEventListener('click', answer1 = () => {
+                if (this.tasks[taskNumber].answer1.result == false) {
+                    id.splice(i, 1);
+                    this.gameStatusField.innerText = `Игрок ${i+1} проиграл`
+                }
+            });
+            this.textFieldAnswer2.addEventListener('click', answer2 = () => {
+                if (this.tasks[taskNumber].answer2.result == false) {
+                    id.splice(i, 1);
+                    this.gameStatusField.innerText = `Игрок ${i+1} проиграл`
+                }
+            });
+
+            this.tasks.splice(taskNumber, 1);
+        }
+        this.gameStatusField.innerText = `Игрок ${id[0]} победил`;
+
+    },
+
     finish(result = 'lose') {
         this.state = 0;
         if (result === 'lose') {
@@ -187,12 +218,8 @@ tikTakBoom = {
                 id.push(i);
             }
         }
-        // TODO: Если у нескольких игроков наименьшее количество ошибок - играют в пенальти:
-        // if (repeat) {
-        //     this.countOfPlayers = id.length;
-        //     this.timer(5);
-        //     this.turnOn();
-        // }
+
+        repeat ? penalty(id);
 
 
         if (this.countOfPlayers > '1') {
