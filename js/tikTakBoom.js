@@ -164,10 +164,10 @@ tikTakBoom = {
     },
 
     penalty(id) {
-        timer(5);
         let game = 1;
         let i = 0;
         while (game && this.boomTimer > 0 && id.length > 1) {
+            timer(5);
             this.gameStatusField.innerText = `Пенальти! Вопрос игроку №${this.i + 1}`;
             const taskNumber = randomIntNumber(this.tasks.length - 1);
 
