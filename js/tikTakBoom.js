@@ -105,6 +105,9 @@ tikTakBoom = {
             if (this.players[this.i][1] == 3) {
                 this.isPlaying[this.i] = 0;
                 this.players[this.i][1] = '❌';
+                if (this.isPlaying.includes(1) == false) {
+                    this.finish();
+                }
             }
             this.superQuestion = 0;
             switch (this.i) {
@@ -114,14 +117,11 @@ tikTakBoom = {
                 case 3: document.getElementById('player4Error').innerText = this.players[this.i][1]; break;
             }
         }
-        if ((this.rightAnswers < this.needRightAnswers) || (this.boomTimer[this.i] > 0)) {
+
+        if ((this.rightAnswers < this.needRightAnswers) && (this.boomTimer[this.i] > 0) && (this.isPlaying.includes(1))) {
             
             ++this.i;
 
-            // если у всех больше 3 ошибок, игра заканчивается
-            if (this.isPlaying.includes(1) == false) {
-                this.finish('lose');
-            }
             // isPlaying[i] == 0, если у игрока 3 ошибки
             while (this.isPlaying[this.i] == 0) {
                 ++this.i;
@@ -133,6 +133,7 @@ tikTakBoom = {
             if (this.tasks.length === 0) {
                 this.finish('lose');
             } else {
+                console.log('st');
                 this.turnOn();
             }
         } else {
@@ -227,14 +228,14 @@ tikTakBoom = {
             penalty(id);
         }
 
+        this.textFieldQuestion.innerText = `Для начала игры нажмите кнопку внизу`;
+        this.textFieldAnswer1.innerText = ``;
+        this.textFieldAnswer2.innerText = ``;
 
         if (this.countOfPlayers > '1') {
             this.gameStatusField.innerText += `Победил игрок №${id + 1}`;
         }
 
-        this.textFieldQuestion.innerText = `Для начала игры нажмите кнопку внизу`;
-        this.textFieldAnswer1.innerText = ``;
-        this.textFieldAnswer2.innerText = ``;
         console.log(this);
     },
 
