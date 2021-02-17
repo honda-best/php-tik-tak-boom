@@ -9,7 +9,7 @@ tikTakBoom = {
         startStopBtn,
         boomTimer
     ) {
-        this.boomTimer = 30;
+        this.boomTimer = [30, 0, 0, 0];
         this.countOfPlayers = 2;
         this.players = [[0, 0], [0, 0], [0, 0], [0, 0]];
         this.isPlaying = [0, 0, 0, 0];
@@ -56,7 +56,11 @@ tikTakBoom = {
 
         setTimeout(() => {this.turnOn()}, 3000);
 
-        this.timer(document.querySelector('#timer').value);
+        for (let i = 0; i < 4; ++i) {
+            this.boomTimer[i] = document.querySelector('#timer').value;
+        }
+
+        this.timer(this.boomTimer[this.i]);
 
         this.countOfPlayers = document.getElementById("players").options.selectedIndex;
 
@@ -80,7 +84,7 @@ tikTakBoom = {
     turnOff(value) {
         if (this.currentTask[value].result) {
             this.gameStatusField.innerText = 'Верно!';
-            this.boomTimer += 5;
+            this.boomTimer[this.i] += 5;
             if ((this.superQuestion == 8) || (this.superQuestion == 1)) {
                 //console.log('зашли в turnOff ', this.superQuestion);
                 this.finish('won');
@@ -95,7 +99,7 @@ tikTakBoom = {
                 }
         } else {
             this.gameStatusField.innerText = 'Неверно!';
-            this.boomTimer -= 5;
+            this.boomTimer[this.i] -= 5;
             this.players[this.i][1] += 1;
             // при трёх ошибках, завершаем игру
             if (this.players[this.i][1] == 3) {
@@ -110,7 +114,7 @@ tikTakBoom = {
                 case 3: document.getElementById('player4Error').innerText = this.players[this.i][1]; break;
             }
         }
-        if ((this.rightAnswers < this.needRightAnswers) || (this.boomTimer > 0)) {
+        if ((this.rightAnswers < this.needRightAnswers) || (this.boomTimer[this.i] > 0)) {
             
             ++this.i;
 
@@ -166,7 +170,7 @@ tikTakBoom = {
     penalty(id) {
         let game = 1;
         let i = 0;
-        while (game && this.boomTimer > 0 && id.length > 1) {
+        while (game && this.boomTimer[this.i] > 0 && id.length > 1) {
             timer(5);
             this.gameStatusField.innerText = `Пенальти! Вопрос игроку №${this.i + 1}`;
             const taskNumber = randomIntNumber(this.tasks.length - 1);
@@ -219,7 +223,9 @@ tikTakBoom = {
             }
         }
 
-        repeat ? penalty(id);
+        if (repeat) {
+            penalty(id);
+        }
 
 
         if (this.countOfPlayers > '1') {
@@ -233,9 +239,9 @@ tikTakBoom = {
     },
 
     timer(time = 0) {
-        if (time != 0) {
-            this.boomTimer = time;
-        }
+        // if (time != 0) {
+        //     this.boomTimer = time;
+        // }
         if (this.start > 0) {
             this.timerField.innerText = `${this.start}...`;
             --this.start;
@@ -247,17 +253,17 @@ tikTakBoom = {
             );
         } else {
             if (this.state) {
-                this.boomTimer -= 1;
-                let sec = this.boomTimer % 60;
-                let min = (this.boomTimer - sec) / 60;
+                this.boomTimer[this.i] -= 1;
+                let sec = this.boomTimer[this.i] % 60;
+                let min = (this.boomTimer[this.i] - sec) / 60;
                 sec = (sec >= 10) ? sec : '0' + sec;
                 min = (min >= 10) ? min : '0' + min;
                 this.timerField.innerText = `${min}:${sec}`;
 
-                if (this.boomTimer > 0) {
+                if (this.boomTimer[this.i] > 0) {
                     this.intervalId = setTimeout(
                         () => {
-                            this.timer(this.boomTimer)
+                            this.timer(this.boomTimer[this.i])
                         },
                         1000,
                     )
